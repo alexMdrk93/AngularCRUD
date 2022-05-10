@@ -2,6 +2,6 @@
 <app-hero-card
   *ngFor="let hero of heroes"
   [hero]="hero"
-  (onDeleteHero)="deleteHero(hero)"
-  (onUpdateHero)="updateHero(hero)"
+  (delete)="deleteHero($event)"
+  (edit)="showEditHero($event)"
 ></app-hero-card>

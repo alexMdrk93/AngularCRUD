@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HeroServiceService } from 'src/app/services/hero-service.service';
 import { Hero } from 'src/app/Hero';
 import { tap, map } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UpdateModalComponent } from '../update-modal/update-modal.component';
 
 @Component({
   selector: 'app-hero',
@@ -11,7 +13,7 @@ import { tap, map } from 'rxjs';
 export class HeroComponent implements OnInit {
   heroes: Hero[] = [];
 
-  constructor(private heroService: HeroServiceService) { }
+  constructor(private heroService: HeroServiceService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.heroService.testGetHeroes()
@@ -50,4 +52,11 @@ export class HeroComponent implements OnInit {
   addHero(hero: Hero){
     this.heroService.addHero(hero).subscribe((hero) => (this.heroes.push(hero)));
 }
+
+  showEditHero(hero: Hero) {
+    const modalRef = this.modalService.open(UpdateModalComponent);
+    modalRef.componentInstance.updatedHero = {...hero};
+    modalRef.closed.subscribe(updatedHero => {this.heroService.updateHero(updatedHero).subscribe()})
+    }
+
 }

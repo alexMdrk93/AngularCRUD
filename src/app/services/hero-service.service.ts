@@ -34,7 +34,7 @@ testGetHeroes() {
 
   updateHero(hero: Hero): Observable<Hero> {
     const url = `${this.apiUrl}/${hero.id}`;
-    return this.http.delete<Hero>(url);
+    return this.http.patch<Hero>(url,hero, httpOptions);
   }
 
   addHero(hero: Hero): Observable<Hero> {

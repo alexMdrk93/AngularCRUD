@@ -8,8 +8,8 @@ import { Hero } from 'src/app/Hero';
 })
 export class HeroCardComponent implements OnInit {
   @Input() hero!: Hero;
-  @Output() onDeleteHero: EventEmitter<Hero> = new EventEmitter;
-  @Output() onUpdateHero: EventEmitter<Hero> = new EventEmitter;
+  @Output() delete: EventEmitter<Hero> = new EventEmitter();
+  @Output() edit: EventEmitter<Hero> = new EventEmitter();
 
   constructor() { }
 
@@ -18,15 +18,11 @@ export class HeroCardComponent implements OnInit {
 
   displayStyle = 'none'
 
-  onDelete(hero: any) {
-    this.onDeleteHero.emit(hero);
+  onDelete() {
+    this.delete.emit(this.hero);
   }
 
-  openPopup() {
-    this.displayStyle = "block";
+  onEdit() {
+    this.edit.emit(this.hero);
   }
-
-  closePopup() {
-    this.displayStyle = "none";
-}
 }
