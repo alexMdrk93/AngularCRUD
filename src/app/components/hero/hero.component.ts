@@ -56,7 +56,12 @@ export class HeroComponent implements OnInit {
   showEditHero(hero: Hero) {
     const modalRef = this.modalService.open(UpdateModalComponent);
     modalRef.componentInstance.updatedHero = {...hero};
-    modalRef.closed.subscribe(updatedHero => {this.heroService.updateHero(updatedHero).subscribe()})
+    modalRef.closed.subscribe(updatedHero => {this.heroService.updateHero(updatedHero).subscribe(
+      ()=>{this.heroes = this.heroes.map(
+        (h) => {if (h.id === updatedHero.id){return updatedHero}
+      return h}
+      )}
+    )})
     }
 
 }
