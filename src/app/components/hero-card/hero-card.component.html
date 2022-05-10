@@ -1,0 +1,85 @@
+<div class="boss task">
+  <div class="card" style="width: 20rem">
+    <img src="{{ hero.img }}" class="card-img-top" alt="Logo for the hero" />
+    <div class="card-body">
+      <h3 class="card-title">{{ hero.numeDeErou }}</h3>
+      <p><span>Name</span>: {{ hero.nume }}</p>
+      <p><span>Surname</span>: {{ hero.prenume }}</p>
+      <p><span>SuperPower</span>: {{ hero.numeSuper }}</p>
+      <div class="centerBtn">
+        <button
+          type="button"
+          class="btn btn-primary updateBtn"
+          (click)="openPopup()"
+        >
+          Update
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger deleteBtn"
+          (click)="onDelete(hero)"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: displayStyle }"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <form>
+        <div class="mb-3">
+          <label for="formGroupExampleInput" class="form-label"
+            >Nume actor</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="nume"
+            value="{{ hero.nume }}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="formGroupExampleInput2" class="form-label"
+            >Prenume actor</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="prenume"
+            value="{{ hero.prenume }}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="formGroupExampleInput" class="form-label"
+            >Nume erou</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="numeDeErou"
+            value="{{ hero.numeDeErou }}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="formGroupExampleInput2" class="form-label"
+            >Superputere</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="superputere"
+            value="{{ hero.numeSuper }}"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary submitBtn">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
